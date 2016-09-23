@@ -13,17 +13,18 @@ class FPTree {
 	protected FPTree parent;
 	protected FPTree sibling;
 		
-	    FPTree(){}
+    	FPTree() {
+    		
+    	}
 		
-	    FPTree(int c){
-			this.count = c;
-		}
+	FPTree(int c) {
+		this.count = c;
+	}
 		
-	    FPTree(String attr, int c) {
-			this.attribute = attr;
-			this.count = c;
-		
-		}
+	FPTree(String attr, int c) {
+		this.attribute = attr;
+		this.count = c;
+	}
 }
 
 /**
@@ -43,7 +44,7 @@ class compareElements  implements Comparator<FPobject> {
 /**
  *   Sort Elements Attribute elements based on Prority
  */
-class comparePrority  implements Comparator<FPobject>{
+class comparePrority  implements Comparator<FPobject> {
 	 
 	    @Override
 	    public int compare(FPobject e1, FPobject e2) {
@@ -79,9 +80,9 @@ public class FPgrowth  {
 		  List<FPTree> templist = treeelement.children;
 		  FPTree temp = null;
 		  if(!templist.isEmpty()){
-			 for(int i=0;i<templist.size();i++){
+			 for(int i=0;i<templist.size();i++) {
 				  temp = templist.get(i);
-				 if(temp.attribute.equals(element)){
+				 if(temp.attribute.equals(element)) {
 					 return temp;
 				 }
 				 
@@ -96,9 +97,9 @@ public class FPgrowth  {
 	 */
 	public FPTree createFptree(FPTree root) {
 	
-		for(int i=0;i<datasetNew.size();i++){
+		for(int i=0;i<datasetNew.size();i++) {
 			List<FPobject> tempList = datasetNew.get(i);
-			if(tempList.isEmpty()){
+			if(tempList.isEmpty()) {
 			  continue;
 			} else {
 			  root = fPTreeCreation( tempList, root); 
@@ -111,7 +112,7 @@ public class FPgrowth  {
 	/**
 	 *    Fp Tree creation Method (Support Method)
 	 */
-	public FPTree fPTreeCreation(List<FPobject> list, FPTree root){
+	public FPTree fPTreeCreation(List<FPobject> list, FPTree root) {
 		FPTree tnode = root;
 		int count = 0;
 		for(int i = 0;i < list.size(); i++) {
@@ -126,7 +127,7 @@ public class FPgrowth  {
 				 if(pointersMap.containsKey(fpElement)) {
 					   pointersMap.get(fpElement).add(tnode);
 					   List<FPTree> tempfpTree = pointersMap.get(fpElement);
-					   if(!tempfpTree.isEmpty()){
+					   if(!tempfpTree.isEmpty()) {
 					        FPTree previous = tempfpTree.get(tempfpTree.size()-1);
 					        previous.sibling = tnode;
 					   }
@@ -140,8 +141,8 @@ public class FPgrowth  {
 				  tnode.count = tnode.count+1 ; 
 			  }	  
 		    
-      } 
-	  return root; 
+      		} 
+	  	return root; 
 	} 
 	
 	/**
@@ -213,7 +214,7 @@ public class FPgrowth  {
 	 */
 	public void readFile()throws FileNotFoundException  {
 		Scanner Infile = new Scanner(new File("C:\\Datasets\\Fpgrowthexample.txt "));
-		while(Infile.hasNextLine())	{
+		while(Infile.hasNextLine()) {
 			String temp =Infile.nextLine();
 			String[] col =temp.split(","); 
 			addTrasactions(col);
@@ -222,7 +223,7 @@ public class FPgrowth  {
 		System.out.println("Dataread sucessfully");	
 	}
 	
-	public void addTrasactions(String[] col)	{
+	public void addTrasactions(String[] col) {
 		dataset.add(col);	
 		createCountTable(col);
 	}
@@ -230,18 +231,18 @@ public class FPgrowth  {
 	/**
 	 *    Search FP object
 	 */
-	public FPobject search(String val)	{
+	public FPobject search(String val) {
 		 Iterator iterator = fpObjectsSet.iterator();
 		 if(!fpObjectsSet.isEmpty()){
-		 while(iterator.hasNext()){
-			 FPobject temp =(FPobject)iterator.next();
-			 if(temp!=null){
-				 if(temp.attribute.equals(val)){
-					 return temp;
-				 }
-			 }
+			while(iterator.hasNext()){
+				 FPobject temp =(FPobject)iterator.next();
+				 if(temp!=null) {
+					 if(temp.attribute.equals(val)) {
+						 return temp;
+				 	}
+				}
 			 
-		 	}
+			}
 		 }
 	   return null;
 	}
@@ -252,16 +253,16 @@ public class FPgrowth  {
 	public void createCountTable(String[] col)	{
 		int colsize= col.length;
 		List<FPobject> temp = new ArrayList<>();
-		for(int i=0;i<colsize;i++){
+		for(int i=0;i<colsize;i++) {
 			String key = col[i];
 			FPobject current = search(key);
-			if(current == null)	{
-			  current = new FPobject(key,1);
-			  fpObjectsSet.add(current);
-			  temp.add(current);
+			if(current == null) {
+				 current = new FPobject(key,1);
+				 fpObjectsSet.add(current);
+				 temp.add(current);
 			} else {
-			  current.count=current.count+1;
-			  temp.add(current);
+			  	current.count=current.count+1;
+			  	temp.add(current);
 			}
 		}	
 	
@@ -293,7 +294,7 @@ public class FPgrowth  {
 	/**
 	 *    Update FP object Set depending upon Threshold
 	 */ 
-	public void sortElements(int Threshold){
+	public void sortElements(int Threshold) {
 		if(!order.isEmpty()){
 			Collections.sort(order,new compareElements());
 			FPobject tempFpobj = null;
@@ -332,7 +333,7 @@ public class FPgrowth  {
 				  current = new FPobject(key,count);
 				  fpObjectsSet.add(current);
 				  temp.add(current);
-			 }else{
+			 } else {
 				  current.count=current.count+count;
 				  temp.add(current);
 			 }
