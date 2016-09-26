@@ -102,7 +102,7 @@ public class FPgrowth  {
 			if(tempList.isEmpty()) {
 			  continue;
 			} else {
-			  root = fPTreeCreation( tempList, root); 
+			  root = fPTreeCreation(tempList, root); 
 		    }
 		}
 		return root;
@@ -134,11 +134,11 @@ public class FPgrowth  {
 				 } else {
 					 List<FPTree> temp = new ArrayList();
 					 temp.add(tnode);
-					 pointersMap.put(fpElement,temp); 
+					 pointersMap.put(fpElement, temp); 
 				 }	  
 			  } else {
 				  tnode = tElement;
-				  tnode.count = tnode.count+1 ; 
+				  tnode.count = tnode.count+ 1; 
 			  }	  
 		    
       		} 
@@ -151,10 +151,10 @@ public class FPgrowth  {
 	public void printPoniterTable(FPTree root) {
 		System.out.println("pointer map");
 		for(Entry<FPobject, List<FPTree>> entry:pointersMap.entrySet()) {
-			FPobject temp = (FPobject)entry.getKey();
-			System.out.print(temp.attribute+" ");
-			List<FPTree> list = (ArrayList)entry.getValue();
-			 for(int i = 0;i < list.size(); i++) {
+			FPobject temp =  (FPobject) entry.getKey();
+			System.out.print(temp.attribute + " ");
+			List<FPTree> list = (ArrayList) entry.getValue();
+			 for(int i = 0; i < list.size(); i++) {
 				 System.out.print(" "+list.get(i).attribute);
 				 List<String> prefix =	extractPrefixElements(list.get(i), root);
 				 for(int j = 0; j < prefix.size(); j++) {
@@ -176,10 +176,10 @@ public class FPgrowth  {
 	
 	public void dfs(FPTree root) {
 		
-		if(root.children.size()<=0){
+		if(root.children.size() <= 0){
 			return;
 		}
-		for(int i=0;i<root.children.size();i++) {
+		for(int i=0;i < root.children.size();i++) {
 			System.out.println(" name :" + root.children.get(i).attribute+ "count:"+root.children.get(i).count+
 					"  parent is:  "+ root.children.get(i).parent.attribute); 
 			dfs(root.children.get(i));
@@ -197,10 +197,10 @@ public class FPgrowth  {
 		List<String> result = new ArrayList<>();
 		if(node != null) {
 			while(node != root) {
-				if(node!=null) {
-					if(node!=root)	{
+				if(node != null) {
+					if(node != root)	{
 						result.add(node.attribute);
-						node=node.parent;	
+						node = node.parent;	
 					}
 				}
 			}
@@ -215,8 +215,8 @@ public class FPgrowth  {
 	public void readFile()throws FileNotFoundException  {
 		Scanner Infile = new Scanner(new File("C:\\Datasets\\Fpgrowthexample.txt "));
 		while(Infile.hasNextLine()) {
-			String temp =Infile.nextLine();
-			String[] col =temp.split(","); 
+			String temp = Infile.nextLine();
+			String[] col = temp.split(","); 
 			addTrasactions(col);
 		
 		}
@@ -251,7 +251,7 @@ public class FPgrowth  {
 	 *    Search FP object
 	 */
 	public void createCountTable(String[] col)	{
-		int colsize= col.length;
+		int colsize = col.length;
 		List<FPobject> temp = new ArrayList<>();
 		for(int i=0;i<colsize;i++) {
 			String key = col[i];
@@ -261,7 +261,7 @@ public class FPgrowth  {
 				 fpObjectsSet.add(current);
 				 temp.add(current);
 			} else {
-			  	current.count=current.count+1;
+			  	current.count = current.count+1;
 			  	temp.add(current);
 			}
 		}	
@@ -280,13 +280,13 @@ public class FPgrowth  {
 				continue; 
 			 } else {
 				 fpObjectsSetNew.add(temp); 
-				 order.add( temp);
+				 order.add(temp);
 			 }
 				
 		}
 		Iterator iterator1 = fpObjectsSetNew.iterator();
 		while(iterator1.hasNext()) {
-			FPobject temp1 =(FPobject)iterator1.next();
+			FPobject temp1 = (FPobject)iterator1.next();
 		 }
 	} 
 	
@@ -295,12 +295,12 @@ public class FPgrowth  {
 	 *    Update FP object Set depending upon Threshold
 	 */ 
 	public void sortElements(int Threshold) {
-		if(!order.isEmpty()){
+		if(!order.isEmpty()) {
 			Collections.sort(order,new compareElements());
 			FPobject tempFpobj = null;
 			for (int i = 0; i < order.size(); i++) {
-				tempFpobj=order.get(i);
-				tempFpobj.prority=i;
+				tempFpobj = order.get(i);
+				tempFpobj.prority = i;
 			
 			}
 		}
@@ -328,13 +328,13 @@ public class FPgrowth  {
 		List<FPobject> temp = new ArrayList<>();
 		for(int i=0;i<prefix.size();i++){
 			 String key = prefix.get(i);
-			 FPobject current = search(key);
+			 FPobject current = search (key);
 			 if(current == null) {
 				  current = new FPobject(key,count);
 				  fpObjectsSet.add(current);
 				  temp.add(current);
 			 } else {
-				  current.count=current.count+count;
+				  current.count = current.count + count;
 				  temp.add(current);
 			 }
 		}
