@@ -15,11 +15,11 @@ public class Algorithm  {
 		try {
 			fp.readFile();
 		} catch (FileNotFoundException e) {
-					e.printStackTrace();
+			e.printStackTrace();
 		}
-	    fp.updateTableOnTreshold(fp.Thresholdnew);
-	    fp.sortElements(fp.Thresholdnew);
-	    fp.root=fp.createFptree(fp.root);
+	    	fp.updateTableOnTreshold(fp.Thresholdnew);
+	    	fp.sortElements(fp.Thresholdnew);
+	    	fp.root=fp.createFptree(fp.root);
 		List<FPobject> templist = new ArrayList<>();
 		al.FPgrowthAlgo(fp,templist,fp.Thresholdnew);   
 	}
