@@ -19,7 +19,7 @@ public class Algorithm  {
 		}
 	    	fp.updateTableOnTreshold(fp.Thresholdnew);
 	    	fp.sortElements(fp.Thresholdnew);
-	    	fp.root=fp.createFptree(fp.root);
+	    	fp.root = fp.createFptree(fp.root);
 		List<FPobject> templist = new ArrayList<>();
 		al.FPgrowthAlgo(fp,templist,fp.Thresholdnew);   
 	}
