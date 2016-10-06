@@ -328,7 +328,7 @@ public class FPgrowth  {
 		List<FPobject> temp = new ArrayList<>();
 		for(int i=0;i<prefix.size();i++){
 			 String key = prefix.get(i);
-			 FPobject current = search (key);
+			 FPobject current = searchFPobject(key);
 			 if(current == null) {
 				  current = new FPobject(key,count);
 				  fpObjectsSet.add(current);
