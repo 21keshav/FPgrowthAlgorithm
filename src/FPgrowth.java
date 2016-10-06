@@ -231,7 +231,7 @@ public class FPgrowth  {
 	/**
 	 *    Search FP object
 	 */
-	public FPobject search(String val) {
+	public FPobject searchFPobject(String val) {
 		 Iterator iterator = fpObjectsSet.iterator();
 		 if(!fpObjectsSet.isEmpty()){
 			while(iterator.hasNext()){
@@ -255,7 +255,7 @@ public class FPgrowth  {
 		List<FPobject> temp = new ArrayList<>();
 		for(int i=0;i<colsize;i++) {
 			String key = col[i];
-			FPobject current = search(key);
+			FPobject current = searchFPobject(key);
 			if(current == null) {
 				 current = new FPobject(key,1);
 				 fpObjectsSet.add(current);
